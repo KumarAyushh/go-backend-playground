@@ -1,0 +1,17 @@
+(1) Server start
+main.go
+   ↓
+routes.SetupRoutes()
+   ↓
+ServeMux (routes register ho gaye)
+
+-------------------------
+
+(2) Jab request aaye
+Browser → /hello
+   ↓
+ServeMux route match karta hai
+   ↓
+HelloHandler() CALL hota hai 🔥
+   ↓
+Response send hota hai

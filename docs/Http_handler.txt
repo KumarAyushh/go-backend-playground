@@ -1,0 +1,94 @@
+# Go HTTP Handler – Quick Notes
+
+### 1. Function Signature
+
+* Fixed format:
+
+  ```go
+  func Handler(w http.ResponseWriter, r *http.Request)
+  ```
+* ❌ Cannot change order (type mismatch error)
+
+---
+
+### 2. `w` and `r`
+
+* Just variable names (placeholders)
+* Can rename:
+
+  ```go
+  func Handler(response http.ResponseWriter, request *http.Request)
+  ```
+* Convention:
+
+  * `w` → response
+  * `r` → request
+
+---
+
+### 3. `Write()` Return Values
+
+* Returns:
+
+  ```go
+  (n int, err error)
+  ```
+* Ignore values:
+
+  ```go
+  _, _ = w.Write(...)
+  ```
+* Cleaner:
+
+  ```go
+  w.Write(...)
+  ```
+* Best practice:
+
+  ```go
+  _, err := w.Write(...)
+  if err != nil {
+      // handle error
+  }
+  ```
+
+---
+
+### 4. Why `[]byte`?
+
+* `Write()` expects `[]byte`, not string
+* Convert:
+
+  ```go
+  []byte("Hello")
+  ```
+
+---
+
+### 5. Sending Response
+
+* ❌ Invalid:
+
+  ```go
+  w.Write("Hello")
+  ```
+* ✅ Valid:
+
+  ```go
+  w.Write([]byte("Hello"))
+  ```
+* ✅ Better:
+
+  ```go
+  fmt.Fprint(w, "Hello")
+  ```
+
+---
+
+### 🚀 Summary
+
+* Fixed handler signature
+* `w`, `r` → naming convention
+* `_` → ignore values
+* `Write()` needs `[]byte`
+* `fmt.Fprint()` preferred

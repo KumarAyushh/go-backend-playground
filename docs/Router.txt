@@ -1,0 +1,66 @@
+🧠 1. SetupRoutes() *http.ServeMux — Yeh kya hai?
+func SetupRoutes() *http.ServeMux
+
+👉 Breakdown:
+
+SetupRoutes() → function naam
+*http.ServeMux → return type
+🔥 ServeMux kya hota hai?
+
+👉 Simple words:
+
+ServeMux = Router (Go ka)
+
+👉 Node.js mapping:
+
+const router = express();
+🔹 http.NewServeMux()
+mux := http.NewServeMux()
+
+👉 Matlab:
+
+Ek naya router object create kar rahe ho
+
+👉 Node mapping:
+
+const router = express();
+🔹 Why return it?
+return mux
+
+👉 Kyuki:
+
+main.go ko router chahiye server start karne ke liye
+
+👉 Node me:
+
+app.listen(8080)
+
+👉 Go me:
+
+http.ListenAndServe(":8080", router)
+🧠 2. Why * (asterisk) use kiya?
+
+👉 Yeh MOST IMPORTANT hai.
+
+*http.ServeMux
+
+👉 * = pointer
+
+🔥 Simple Explanation
+
+👉 Without pointer:
+
+copy banega
+
+👉 With pointer:
+
+original object pass hota hai
+🧠 Real-life analogy
+
+Soch:
+
+ServeMux = ek router machine
+❌ Without *
+machine ka photocopy
+✅ With *
+asli machine ka remote control
